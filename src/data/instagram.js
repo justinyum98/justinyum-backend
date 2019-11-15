@@ -12,8 +12,9 @@ class InstagramAPI extends RESTDataSource {
     const accessToken = `access_token=${process.env.PAGE_ACCESS_TOKEN}`;
     const params = `?${accessToken}`;
     const fullUrl = url + params;
+    let response;
     try {
-      const response = await this.get(fullUrl);
+      response = await this.get(fullUrl);
     } catch(err) {
       throw new Error(err);
     }
@@ -27,8 +28,9 @@ class InstagramAPI extends RESTDataSource {
     const accessToken = `access_token=${process.env.PAGE_ACCESS_TOKEN}`;
     const params = `?${fields}&${accessToken}`;
     const fullUrl = url + params;
+    let response;
     try {
-      const response = await this.get(fullUrl);
+      response = await this.get(fullUrl);
     } catch(err) {
       throw new Error(err);
     }
