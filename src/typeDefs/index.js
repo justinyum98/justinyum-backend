@@ -9,10 +9,10 @@ const typeDefs = gql`
     id: ID!,
     mediaType: String!,
     mediaUrl: String!,
-    likeCount: Number!,
+    likeCount: Int!,
     caption: String!,
     permalink: String!
   }
 `;
 
-export default typeDefs;
+module.exports = typeDefs;
