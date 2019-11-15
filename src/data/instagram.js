@@ -3,14 +3,14 @@ const { RESTDataSource } = require('apollo-datasource-rest');
 class InstagramAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseUrl = 'https://graph.facebook.com/';
+    this.baseUrl = 'https://graph.facebook.com';
   }
 
   /* GET Array of MediaIDs. */
   async getMediaIDs() {
     let response;
     try {
-      response = await this.get(`${process.env.INSTA_ID}/media`, {
+      response = await this.get(`/${process.env.INSTA_ID}/media`, {
         access_token: `${process.env.PAGE_ACCESS_TOKEN}`,
       });
     } catch(err) {
