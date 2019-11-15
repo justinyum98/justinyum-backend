@@ -8,13 +8,11 @@ class InstagramAPI extends RESTDataSource {
 
   /* GET Array of MediaIDs. */
   async getMediaIDs() {
-    const url = `${process.env.INSTA_ID}/media`;
-    const accessToken = `access_token=${process.env.PAGE_ACCESS_TOKEN}`;
-    const params = `?${accessToken}`;
-    const fullUrl = url + params;
     let response;
     try {
-      response = await this.get(fullUrl);
+      response = await this.get(`${process.env.INSTA_ID}/media`, {
+        access_token: `${process.env.PAGE_ACCESS_TOKEN}`,
+      });
     } catch(err) {
       throw new Error(err);
     }
@@ -23,14 +21,12 @@ class InstagramAPI extends RESTDataSource {
 
   /* GET Media object by ID. */
   async getMediaByID({ mediaID }) {
-    const url = `${mediaID}`;
-    const fields = 'fields=id,media_type,media_url,owner,timestamp';
-    const accessToken = `access_token=${process.env.PAGE_ACCESS_TOKEN}`;
-    const params = `?${fields}&${accessToken}`;
-    const fullUrl = url + params;
     let response;
     try {
-      response = await this.get(fullUrl);
+      response = await this.get(`${mediaID}`, {
+        fields: 'id,media_type,media_url,owner,timestamp',
+        access_token: `${process.env.PAGE_ACCESS_TOKEN}`,
+      });
     } catch(err) {
       throw new Error(err);
     }
