@@ -19,6 +19,9 @@ const getMediaIDs = () => {
     .then((res) => {
       getAllMediaObjects(res.data.data);
     })
+    .catch((err) => {
+      res.status(500).send(`Error getting Media IDs: ${err}`);
+    })
 }
 
 const getAllMediaObjects = (mediaIDs) => {
@@ -26,6 +29,9 @@ const getAllMediaObjects = (mediaIDs) => {
   Promise.all(allPromises)
     .then((res) => {
       res.json(parseMediaData(res))
+    })
+    .catch((err) => {
+      res.status(500).send(`Error getting all Media objects: ${err}`);
     })
 }
 
