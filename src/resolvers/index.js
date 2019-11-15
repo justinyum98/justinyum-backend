@@ -1,7 +1,8 @@
 module.exports = {
   Query: {
-    posts: (_, __, { dataSources }) => (
-      dataSources.instagramAPI.getAllMediaObjects()
-    )
+    posts: async (_, __, { dataSources }) => {
+      const mediaObjects = await dataSources.instagramAPI.getAllMediaObjects();
+      return mediaObjects;
+    }
   }
 }

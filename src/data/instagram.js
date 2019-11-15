@@ -33,10 +33,10 @@ class InstagramAPI extends RESTDataSource {
   }
 
   async getAllMediaObjects() {
-    const mediaIDs = this.getMediaIDs();
+    const mediaIDs = await this.getMediaIDs();
     let mediaObjects = [];
     mediaIDs.forEach((mediaID) => {
-      const media = getMediaByID({ mediaID });
+      const media = await this.getMediaByID({ mediaID });
       mediaObjects.push(media);
     });
     return mediaObjects;
