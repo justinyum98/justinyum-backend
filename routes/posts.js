@@ -3,8 +3,20 @@ const router = express.Router();
 const axios = require('axios');
 
 /* GET user's Media objects. */
-router.get('/', (req, res) => {
-  getMediaIDs();
+router.get('/', (req, res1) => {
+  getMediaIDs()
+    .then((res2) => {
+      getAllMediaObjects(res2.data.data)
+        .then((res3) => {
+          res1.json(parseMediaData(res3))
+        })
+        .catch((err) => {
+          res1.status(500).send(`Error getting all Media objects: ${err}`);
+        })
+    })
+    .catch((err) => {
+      res1.status(500).send(`Error getting Media IDs: ${err}`);
+    })
 });
 
 const getMediaIDs = () => {
@@ -15,24 +27,12 @@ const getMediaIDs = () => {
       access_token: process.env.PAGE_ACCESS_TOKEN
     }
   }
-  axios(options)
-    .then((res) => {
-      getAllMediaObjects(res.data.data);
-    })
-    .catch((err) => {
-      res.status(500).send(`Error getting Media IDs: ${err}`);
-    })
+  return axios(options);
 }
 
 const getAllMediaObjects = (mediaIDs) => {
   let allPromises = getMediaObjectPromises(mediaIDs);
-  Promise.all(allPromises)
-    .then((res) => {
-      res.json(parseMediaData(res))
-    })
-    .catch((err) => {
-      res.status(500).send(`Error getting all Media objects: ${err}`);
-    })
+  return Promise.all(allPromises)
 }
 
 const getMediaObject = (mediaID) => {
