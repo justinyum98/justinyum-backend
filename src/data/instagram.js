@@ -39,9 +39,12 @@ class InstagramAPI extends RESTDataSource {
 
   async getAllMediaObjects() {
     const mediaIDs = this.getMediaIDs();
-    return Promise.all(
-      mediaIDs.map(mediaID => this.getMediaByID({ mediaID })),
-    );
+    let mediaObjects = [];
+    mediaIDs.forEach((mediaID) => {
+      const media = getMediaByID({ mediaID });
+      mediaObjects.push(media);
+    });
+    return mediaObjects;
   }
 
   async mediaReducer({ media }) {
