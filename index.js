@@ -19,4 +19,4 @@ app.use('/posts', postsRouter);
 // catch 404 and forward to error handler
 // error handler
 
-express().listen(PORT, () => console.log(`Listening on ${ PORT }`))
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
