@@ -10,6 +10,8 @@ const server = new ApolloServer({
   dataSources:() => ({
     instagramAPI: new InstagramAPI,
   }),
+  introspection: true,
+  playground: true,
 });
 
 server.listen({ port: process.env.PORT || 4000 })
