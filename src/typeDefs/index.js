@@ -7,11 +7,14 @@ const typeDefs = gql`
 
   type Media {
     id: ID!,
+    username: String!,
     mediaType: String!,
     mediaUrl: String!,
     likeCount: Int!,
     caption: String!,
-    permalink: String!
+    commentsCount: String!,
+    permalink: String!,
+    timestamp: String!,
   }
 `;
 

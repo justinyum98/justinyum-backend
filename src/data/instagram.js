@@ -3,14 +3,13 @@ const { RESTDataSource } = require('apollo-datasource-rest');
 class InstagramAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'https://graph.facebook.com/';
   }
 
   /* GET Array of MediaIDs. */
   async getMediaIDs() {
     let response;
     try {
-      response = await this.get(`${process.env.INSTA_ID}/media`, {
+      response = await this.get(`https://graph.facebook.com/${process.env.INSTA_ID}/media`, {
         access_token: `${process.env.PAGE_ACCESS_TOKEN}`,
       });
     } catch(err) {
@@ -24,7 +23,7 @@ class InstagramAPI extends RESTDataSource {
     let response;
     try {
       response = await this.get(`https://graph.facebook.com/${mediaID}`, {
-        fields: 'id,media_type,media_url,like_count,caption,permalink',
+        fields: 'id,username,media_type,media_url,like_count,caption,comments_count,permalink,timestamp',
         access_token: `${process.env.PAGE_ACCESS_TOKEN}`,
       });
     } catch(err) {
@@ -42,12 +41,15 @@ class InstagramAPI extends RESTDataSource {
   async mediaReducer(media) {
     return {
       id: media.id,
+      username: media.username,
       mediaType: media.media_type,
       mediaUrl: media.media_url,
       likeCount: media.like_count,
       caption: media.caption,
+      commentsCount: media.comments_count,
       permalink: media.permalink,
-    }
+      timestamp: media.timestamp,
+    };
   }
 }
 
