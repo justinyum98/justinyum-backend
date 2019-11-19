@@ -2,7 +2,7 @@ const { ApolloServer } = require('apollo-server');
 const typeDefs = require('./src/typeDefs/index');
 const resolvers = require('./src/resolvers/index');
 
-const InstagramAPI = require('./src/data/instagram');
+const InstagramAPI = require('./src/dataSources/instagram');
 
 const server = new ApolloServer({
   typeDefs,
