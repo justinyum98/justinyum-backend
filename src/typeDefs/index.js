@@ -4,6 +4,7 @@ const typeDefs = gql`
   type Query {
     posts: [Media!]!,
     projects: [Project!]!,
+    experience: [Experience!]!,
   }
 
   type Media {
@@ -25,6 +26,15 @@ const typeDefs = gql`
     date: String!,
     description: String!,
     repoUrl: String!,
+  }
+
+  type Experience {
+    companyName: String!,
+    role: String!,
+    imageUrl: String!,
+    date: String!,
+    description: String!,
+    companyUrl: String!,
   }
 `;
 
