@@ -12,7 +12,7 @@ const getAllExperience = () => ([
     role: 'Software Development Intern',
     imageUrl: 'https://picsum.photos/200',
     date: 'June 2018 - Sept. 2018',
-    description: "",
+    description: "Interning at Dexcom was a valuable learning experience that introduced me to the world of web development. In my time there, I learned HTML + CSS + Javascript and used Angular 6 to rebuild the user interface for my team's client token management system. Through that project, I gained a firm understanding of how HTTP requests work, how to use Promises, the importance of testing your UI components. (Thanks to Ranjit and Marco for taking time to help me.)",
     companyUrl: 'https://www.dexcom.com/',
   }
 ]);

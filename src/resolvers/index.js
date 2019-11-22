@@ -1,4 +1,5 @@
 const { getAllProjects } = require('../data/projects');
+const { getAllExperience } = require('../data/experience');
 
 module.exports = {
   Query: {
@@ -7,6 +8,9 @@ module.exports = {
     ),
     projects: () => (
       getAllProjects()
-    )
+    ),
+    experience: () => (
+      getAllExperience()
+    ),
   }
 }
