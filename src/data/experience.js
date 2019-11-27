@@ -12,7 +12,7 @@ const getAllExperience = () => ([
   {
     companyName: 'Dexcom',
     role: 'Software Development Intern',
-    imageUrl: cloudinary.url('dexcom-green-category_z1qtwa.eps', { quality: 'auto:best' }),
+    imageUrl: cloudinary.url('dexcom-green-category_z1qtwa.eps', { quality: 'auto:best', width: 300, crop: 'scale' }),
     date: 'June 2018 - Sept. 2018',
     description: "Interning at Dexcom was a valuable learning experience that introduced me to the world of web development. In my time there, I learned HTML + CSS + Javascript and used Angular 6 to rebuild the user interface for my team's client token management system. Through that project, I gained a firm understanding of how HTTP requests work, how to use Promises, the importance of testing your UI components. (Thanks to Ranjit and Marco for taking time to help me.)",
     companyUrl: 'https://www.dexcom.com/',
