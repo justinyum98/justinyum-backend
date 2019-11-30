@@ -55,7 +55,7 @@ class InstagramAPI extends RESTDataSource {
   async userReducer(user) {
     return {
       id: user.id,
-      profilePictureUrl: media.profile_picture_url,
+      profilePictureUrl: user.profile_picture_url,
     };
   }
 
