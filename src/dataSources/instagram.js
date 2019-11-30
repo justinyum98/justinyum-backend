@@ -10,13 +10,13 @@ class InstagramAPI extends RESTDataSource {
     let response;
     try {
       response = await this.get(`https://graph.facebook.com/${process.env.INSTA_ID}`, {
-        fields: 'profile_picture_url',
+        fields: 'id,profile_picture_url',
         access_token: `${process.env.PAGE_ACCESS_TOKEN}`,
       })
     } catch(err) {
       throw new Error(err);
     }
-    return response;
+    return this.userReducer(response);
   }
 
   /* GET Array of MediaIDs. */
