@@ -16,7 +16,7 @@ class InstagramAPI extends RESTDataSource {
     } catch(err) {
       throw new Error(err);
     }
-    return response.data;
+    return response;
   }
 
   /* GET Array of MediaIDs. */
@@ -50,6 +50,13 @@ class InstagramAPI extends RESTDataSource {
     const mediaIDs = await this.getMediaIDs();
     const promises = mediaIDs.map((mediaID) => this.getMediaByID(mediaID.id));
     return Promise.all(promises);
+  }
+
+  async userReducer(user) {
+    return {
+      id: user.id,
+      profilePictureUrl: media.profile_picture_url,
+    };
   }
 
   async mediaReducer(media) {
