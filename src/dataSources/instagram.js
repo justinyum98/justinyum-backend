@@ -4,6 +4,20 @@ class InstagramAPI extends RESTDataSource {
   constructor() {
     super();
   }
+  
+  /* GET User's profile picture */
+  async getUser() {
+    let response;
+    try {
+      response = await this.get(`https://graph.facebook.com/${process.env.INSTA_ID}`, {
+        fields: 'profile_picture_url',
+        access_token: `${process.env.PAGE_ACCESS_TOKEN}`,
+      })
+    } catch(err) {
+      throw new Error(err);
+    }
+    return response.data;
+  }
 
   /* GET Array of MediaIDs. */
   async getMediaIDs() {

@@ -2,9 +2,15 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type Query {
+    user: User!,
     posts: [Media!]!,
     projects: [Project!]!,
     experience: [Experience!]!,
+  }
+
+  type User {
+    id: ID!,
+    profilePictureUrl: String!,
   }
 
   type Media {
