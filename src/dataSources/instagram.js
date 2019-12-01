@@ -54,6 +54,7 @@ class InstagramAPI extends RESTDataSource {
     console.log('mediaObjects:', mediaObjects);
     const newArr = mediaObjects.map((media) => {
       media.profilePictureUrl = profilePictureUrl;
+      console.log(media);
     });
     console.log('newArr:', newArr);
     return newArr;
