@@ -5,8 +5,8 @@ class InstagramAPI extends RESTDataSource {
     super();
   }
   
-  /* GET User's profile picture */
-  async getUser() {
+  /* GET User's profile picture url */
+  async getUserProfilePictureUrl() {
     let response;
     try {
       response = await this.get(`https://graph.facebook.com/${process.env.INSTA_ID}`, {
@@ -16,7 +16,7 @@ class InstagramAPI extends RESTDataSource {
     } catch(err) {
       throw new Error(err);
     }
-    return this.userReducer(response);
+    return response.profile_picture_url;
   }
 
   /* GET Array of MediaIDs. */
@@ -47,14 +47,17 @@ class InstagramAPI extends RESTDataSource {
   }
 
   async getAllMediaObjects() {
+    const profilePictureUrl = await this.getUserProfilePictureUrl();
     const mediaIDs = await this.getMediaIDs();
     const promises = mediaIDs.map((mediaID) => this.getMediaByID(mediaID.id));
-    return Promise.all(promises);
+    const mediaObjects = await Promise.all(promises);
+    return mediaObjects.map((media) => {
+      media.profilePictureUrl = profilePictureUrl;
+    });
   }
 
   async userReducer(user) {
     return {
-      id: user.id,
       profilePictureUrl: user.profile_picture_url,
     };
   }
