@@ -12,7 +12,7 @@ class InstagramAPI extends RESTDataSource {
       response = await this.get(`https://graph.facebook.com/${process.env.INSTA_ID}`, {
         fields: 'id,profile_picture_url',
         access_token: `${process.env.PAGE_ACCESS_TOKEN}`,
-      })
+      });
     } catch(err) {
       throw new Error(err);
     }
@@ -51,9 +51,14 @@ class InstagramAPI extends RESTDataSource {
     const mediaIDs = await this.getMediaIDs();
     const promises = mediaIDs.map((mediaID) => this.getMediaByID(mediaID.id));
     const mediaObjects = await Promise.all(promises);
-    return mediaObjects.map((media) => (
-      media.profilePictureUrl = profilePictureUrl
-    ));
+    return mediaObjects.map((media) => this.addUserProfilePictureUrlToMedia(media, profilePictureUrl));
+  }
+
+  async addUserProfilePictureUrlToMedia(media, profilePictureUrl) {
+    return {
+      ...media,
+      profilePictureUrl: profilePictureUrl,
+    };
   }
 
   async mediaReducer(media) {
