@@ -51,13 +51,9 @@ class InstagramAPI extends RESTDataSource {
     const mediaIDs = await this.getMediaIDs();
     const promises = mediaIDs.map((mediaID) => this.getMediaByID(mediaID.id));
     const mediaObjects = await Promise.all(promises);
-    console.log('mediaObjects:', mediaObjects);
-    const newArr = mediaObjects.map((media) => {
-      media.profilePictureUrl = profilePictureUrl;
-      console.log(media);
-    });
-    console.log('newArr:', newArr);
-    return newArr;
+    return mediaObjects.map((media) => (
+      media.profilePictureUrl = profilePictureUrl
+    ));
   }
 
   async mediaReducer(media) {
