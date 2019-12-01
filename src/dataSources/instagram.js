@@ -56,12 +56,6 @@ class InstagramAPI extends RESTDataSource {
     });
   }
 
-  async userReducer(user) {
-    return {
-      profilePictureUrl: user.profile_picture_url,
-    };
-  }
-
   async mediaReducer(media) {
     return {
       id: media.id,

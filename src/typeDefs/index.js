@@ -10,6 +10,7 @@ const typeDefs = gql`
   type Media {
     id: ID!,
     username: String!,
+    profilePictureUrl: String!,
     mediaType: String!,
     mediaUrl: String!,
     likeCount: Int!,
