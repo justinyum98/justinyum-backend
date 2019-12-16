@@ -7,6 +7,10 @@ const typeDefs = gql`
     experience: [Experience!]!,
   }
 
+  type Mutation {
+    sendContactInfo(contactInfo: ContactInfoInput!): ContactInfo!,
+  }
+
   type Media {
     id: ID!,
     username: String!,
@@ -36,6 +40,18 @@ const typeDefs = gql`
     date: String!,
     description: String!,
     companyUrl: String!,
+  }
+
+  type ContactInfo {
+    fullName: String!,
+    emailAddress: String!,
+    message: String!,
+  }
+
+  input ContactInfoInput {
+    fullName: String!,
+    emailAddress: String!,
+    message: String!,
   }
 `;
 
