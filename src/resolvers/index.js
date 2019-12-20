@@ -15,8 +15,7 @@ module.exports = {
     ),
   },
   Mutation: {
-    sendContactInfo: (_, { contactInfo }) => {
-      const { fullName, emailAddress, message } = contactInfo;
+    sendContactInfo: (_, { fullName, emailAddress, message }) => {
       const msg = {
         to: process.env.MY_EMAIL_ADDRESS,
         from: emailAddress,
@@ -26,7 +25,11 @@ module.exports = {
       return new Promise((resolve, reject) => {
         sgMail.send(msg)
           .then(() => {
-            resolve(contactInfo);
+            resolve({
+              fullName,
+              emailAddress,
+              message,
+            });
           })
           .catch((error) => {
             reject(`Error in sending mail: ${error}`);

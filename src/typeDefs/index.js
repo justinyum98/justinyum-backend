@@ -8,7 +8,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    sendContactInfo(contactInfo: ContactInfoInput!): ContactInfo!,
+    sendContactInfo(fullName: String!, emailAddress: String!, message: String!): ContactInfo!,
   }
 
   type Media {
@@ -43,12 +43,6 @@ const typeDefs = gql`
   }
 
   type ContactInfo {
-    fullName: String!,
-    emailAddress: String!,
-    message: String!,
-  }
-
-  input ContactInfoInput {
     fullName: String!,
     emailAddress: String!,
     message: String!,
