@@ -3,7 +3,7 @@ const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
 const InstagramAPI = require('./dataSources/instagram');
 
-const intializeApolloServer = () => new ApolloServer({
+const initializeApolloServer = () => new ApolloServer({
   typeDefs,
   resolvers,
   dataSources:() => ({
@@ -14,5 +14,5 @@ const intializeApolloServer = () => new ApolloServer({
 });
 
 module.exports = {
-  intializeApolloServer
+  initializeApolloServer
 };
